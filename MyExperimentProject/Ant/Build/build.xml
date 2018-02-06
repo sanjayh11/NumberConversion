@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyExperimentProject" default="junittest" basedir=".">
+
+<!--  
+<target name="compile" depends="clean">
+	</target>
+-->
+	<path id="classpath">
+		<pathelement location="C:\Program Files\Java\jdk-9.0.1"></pathelement>
+		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib"></pathelement>
+		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.apache.ant_1.10.1.v20170504-0840\lib"></pathelement>
+		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.junit.jupiter.api_5.0.0.v20170910-2246.jar"></pathelement>
+		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.apache.ant_1.10.1.v20170504-0840\lib\ant-junit4.jar"></pathelement>
+		
+	</path>
+
+   <target name="compile" depends="copy">
+   		<javac classpathref="classpath" fork="yes" includeantruntime="true" srcdir="src" destdir="bin" includes="**/*.java"></javac>
+   		<echo>Inside compile task</echo>
+   </target>
+
+	<target name="clean"> 
+	    <echo>Inside clean task</echo>
+		<delete dir="bin"/>
+		<delete dir="src"/>
+		<delete dir="lib"/> 
+	</target>
+	
+	<target name="create" depends="clean" >
+	    <echo>Inside create task</echo>
+		<mkdir dir="bin"/>
+		<mkdir dir="src"/>
+		<mkdir dir="lib"/>
+		<mkdir dir="reports"/>
+	</target>
+	
+	<target name="copy" depends="create">
+	    <echo>Inside copy task</echo>
+		<copydir src="C:\Users\sanja\eclipse-workspace\MyExperimentProject\src" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\src"></copydir>
+		<copydir src="C:\Program Files\Java\jre-9.0.1\lib\" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib" includes="**/*.jar"></copydir>
+		<copydir src="C:\Users\sanja\.p2\pool\plugins" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib" includes="**/*junit*.jar"></copydir>
+	</target>
+	
+	<target name="package" depends="compile">
+	<jar destfile="MyExperimentProject.jar" basedir="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\staging" includes="bin/*.class" update="true">
+	<manifest>
+		<attribute name = "Main-Class" value = "MyExperimentProject2"/>
+	</manifest>
+	</jar>
+		
+	</target>
+
+	<target name="junittest" depends="compile">
+	<junit printsummary="on">
+		<classpath>
+			<pathelement location="C:\Users\sanja\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
+			<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest" />
+		</classpath>
+		<test name="bin\experimentstest\TestNumberToTextConverter">
+		</test>
+		<batchtest fork="yes" todir="${reports}/raw/">
+                <formatter type="xml" />
+                <fileset dir="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest">
+                    <include name="**/*Test*.java" />
+                </fileset>
+        </batchtest>
+			
+	</junit>
+	<junitreport todir="./reports">
+		  <fileset dir="./reports">
+		    <include name="TEST-*.xml"/>
+		  </fileset>
+		  <report format="frames" todir="./reports/html"/>
+		</junitreport>	
+	
+	
+	</target>
+</project>
