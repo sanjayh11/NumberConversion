@@ -3,7 +3,7 @@
  */
 package experiments;
 
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 /**
  * @author sanja
@@ -54,7 +54,7 @@ public class NumberToTextConverter {
         result[0] = "";
         int single, tens, hundreds; 
       
-        if(num > 1000) {
+        if(num > 100000) {
         	result[0] = "Invalid Number";
         	return result; 
         }

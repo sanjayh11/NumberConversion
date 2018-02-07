@@ -21,8 +21,13 @@ public class NumberConverter {
         test1= JOptionPane.showInputDialog("Please input mark for test 1: ");
 
           int int1 = Integer.parseInt(test1);
+          if(int1 == 0) {
+        	  JOptionPane.getRootFrame().dispose();  	  
+          }
+          else {
           if(ConvertNumberToText(int1, result) == true) 
               System.out.println(int1  + "\t" + result[0]);
+          }
 
 	}
 	
@@ -43,7 +48,7 @@ public class NumberConverter {
         result[0] = "";
         int single, tens, hundreds; 
       
-        if(num > 1000) 
+        if(num > 100000) 
             return false; 
       
         hundreds = num / 100; 
