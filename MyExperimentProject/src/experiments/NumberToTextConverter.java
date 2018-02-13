@@ -104,14 +104,14 @@ public class NumberToTextConverter {
         //if(num < 0 || num > 100000) 
         if(num < 0 || num > 100000) 
         { 
-            System.out.println(num + " \tNot Supported"); 
+            //System.out.println(num + " \tNot Supported"); 
             result[0]="Invalid Number: Not supported";
             return result; 
         } 
       
         if( num == 0) 
         {
-           System.out.println(num + " \tZero"); 
+           //System.out.println(num + " \tZero"); 
            result[0]="Zero";
            return result; 
         } 

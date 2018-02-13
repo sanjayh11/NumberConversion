@@ -13,14 +13,15 @@ public class NumberConverter {
 		
 		  String [] result = new String[1];
           result[0] = "";
-    	System.out.println ("in the main");
+    	//System.out.println ("in the main");
     	
     	/* Below is to accept a number from a dialog and then call the number converter class*/
     	
     	String test1;
-        test1= JOptionPane.showInputDialog("Please input mark for test 1: ");
+        test1= JOptionPane.showInputDialog("Please input a number for conversion to text: ");
 
           int int1 = Integer.parseInt(test1);
+          //System.out.println("Entered value is :" + int1); 
           if(int1 == 0) {
         	  JOptionPane.getRootFrame().dispose();  	  
           }
@@ -33,7 +34,7 @@ public class NumberConverter {
 	
 	static public boolean HelperConvertNumberToText(int num, String[] result) 
     { 
-		System.out.print("Inside Helper converter method");
+		//System.out.print("Inside Helper converter method");
         String [] strones = { 
           "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", 
           "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", 
@@ -85,7 +86,7 @@ public class NumberConverter {
 
     static public boolean ConvertNumberToText(int num, String[] result)
     {
-    	System.out.print("Inside Convert No to Text method");
+    	//System.out.print("Inside Convert No to Text method");
         String tempString[] = new String[1]; 
         tempString[0] = "";
         int thousands; 
@@ -94,7 +95,7 @@ public class NumberConverter {
         //if(num < 0 || num > 100000) 
         if(num < 0 || num > 100000) 
         { 
-            System.out.println(num + " \tNot Supported"); 
+            //System.out.println(num + " \tNot Supported"); 
             return false; 
         } 
       
