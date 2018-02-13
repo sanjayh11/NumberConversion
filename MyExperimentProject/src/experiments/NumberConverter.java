@@ -18,16 +18,23 @@ public class NumberConverter {
     	/* Below is to accept a number from a dialog and then call the number converter class*/
     	
     	String test1;
-        test1= JOptionPane.showInputDialog("Please input a number for conversion to text: ");
+        test1= JOptionPane.showInputDialog("Please input a number (between 1 and 100,000 for conversion to text: ");
 
           int int1 = Integer.parseInt(test1);
           //System.out.println("Entered value is :" + int1); 
           if(int1 == 0) {
+        	 // System.out.println("Invalid input. Please enter a positive number upto 100000");
         	  JOptionPane.getRootFrame().dispose();  	  
           }
           else {
-          if(ConvertNumberToText(int1, result) == true) 
+          if(ConvertNumberToText(int1, result) == true) {
+        	  if (int1 >0 && int1<100001) {
               System.out.println(int1  + "\t" + result[0]);
+        	  }
+        	  else {
+        		  System.out.println("Invalid input. Please enter a positive number upto 100000");
+        	  }
+          }
           }
 
 	}
