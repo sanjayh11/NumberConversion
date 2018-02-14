@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyExperimentProject" default="junittest" basedir=".">
+<project name="MyExperimentProject" default="package" basedir=".">
 
 <!--  
 <target name="compile" depends="clean">
@@ -52,11 +52,15 @@
 	-->
 	</target>
 	
-	<target name="package" depends="compile">
-	<jar destfile="MyExperimentProject.jar" basedir="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\staging" includes="bin/*.class" update="true">
-	<manifest>
+	<target name="package" depends="junittest">
+<!--	<jar destfile="MyExperimentProject.jar" basedir="staging" includes="bin/*.class" update="true"> -->
+	
+	<jar destfile="MyExperimentProject.jar" basedir="staging" update="true">	
+		<manifest>
 		<attribute name = "Main-Class" value = "MyExperimentProject2"/>
 	</manifest>
+		<fileset dir="bin"/>
+		<fileset dir="lib"/>
 	</jar>
 		
 	</target>
@@ -66,6 +70,7 @@
 		<classpath>
 		   <pathelement location="C:\Users\sanja\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
 		   <pathelement location="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\Ant\Build\bin\experimentstest" /> 
+			<pathelement location="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\NumberToTextMapping.properties" /> 
 			
 		<!-- <pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest\" /> -->
 		</classpath>
@@ -73,7 +78,7 @@
 		</test>
 		<batchtest fork="yes" todir="${reports}/raw/">
                 <formatter type="xml" />
-                <fileset dir="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest">
+                <fileset dir="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\Ant\Build\bin\experimentstest">
                     <include name="**/*Test*.java" />
                 </fileset>
         </batchtest>
