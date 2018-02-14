@@ -9,8 +9,8 @@
 		<pathelement location="C:\Program Files\Java\jdk-9.0.1"></pathelement>
 		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib"></pathelement>
 		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.apache.ant_1.10.1.v20170504-0840\lib"></pathelement>
-		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.junit.jupiter.api_5.0.0.v20170910-2246.jar"></pathelement>
-		<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib\org.apache.ant_1.10.1.v20170504-0840\lib\ant-junit4.jar"></pathelement>
+		<pathelement location="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\Ant\Build\lib\org.junit.jupiter.api_5.0.0.v20170910-2246.jar"></pathelement>
+		<pathelement location="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\Ant\Build\lib\org.junit_4.12.0.v201504281640\junit.jar"></pathelement>
 		
 	</path>
 
@@ -36,9 +36,20 @@
 	
 	<target name="copy" depends="create">
 	    <echo>Inside copy task</echo>
-		<copydir src="C:\Users\sanja\eclipse-workspace\MyExperimentProject\src" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\src"></copydir>
+	
+		<copy todir= "src">
+			<fileset dir="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\src\"></fileset>	
+		</copy>
+		<copy todir= "lib">
+			<fileset dir="C:\Program Files\Java\jre-9.0.1\lib\" includes="**/*.jar"></fileset>	
+		</copy>
+		<copy todir= "lib">
+					<fileset dir="C:\Users\sanja\.p2\pool\plugins\" includes="**/*junit*.jar"></fileset>	
+		</copy>
+		<!--	<copydir src="C:\Users\sanja\eclipse-workspace\MyExperimentProject\src" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\src"></copydir> 
 		<copydir src="C:\Program Files\Java\jre-9.0.1\lib\" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib" includes="**/*.jar"></copydir>
 		<copydir src="C:\Users\sanja\.p2\pool\plugins" dest="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\lib" includes="**/*junit*.jar"></copydir>
+	-->
 	</target>
 	
 	<target name="package" depends="compile">
@@ -53,10 +64,12 @@
 	<target name="junittest" depends="compile">
 	<junit printsummary="on">
 		<classpath>
-			<pathelement location="C:\Users\sanja\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
-			<pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest" />
+		   <pathelement location="C:\Users\sanja\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
+		   <pathelement location="C:\Users\sanja\git\NumberConversionProject\MyExperimentProject\Ant\Build\bin\experimentstest" /> 
+			
+		<!-- <pathelement location="C:\Users\sanja\eclipse-workspace\MyExperimentProject\Ant\Build\bin\experimentstest\" /> -->
 		</classpath>
-		<test name="bin\experimentstest\TestNumberToTextConverter">
+		<test name="TestNumberToTextConverter.class">
 		</test>
 		<batchtest fork="yes" todir="${reports}/raw/">
                 <formatter type="xml" />
