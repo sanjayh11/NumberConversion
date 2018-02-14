@@ -39,12 +39,11 @@ class TestNumberToTextConverter {
 		
 		try {
 			Properties prop = new Properties();
-		//	ClassLoader loader = Thread.currentThread().getContextClassLoader();           
-			File file = new File ("C:\\Users\\sanja\\eclipse-workspace\\MyExperimentProject\\\\NumberToTextMapping.properties");
+		       
+    		File file = new File ("C:\\Users\\sanja\\git\\NumberConversionProject\\MyExperimentProject\\NumberToTextMapping.properties");
 			FileInputStream stream = new FileInputStream(file);
+	
 
-			
-//		InputStream stream = loader.getResourceAsStream("C:\\Users\\sanja\\eclipse-workspace\\MyExperimentProject\\NumberToTextMapping.properties");
 			prop.load(stream);
 			stream.close();
 			@SuppressWarnings("rawtypes")
@@ -52,25 +51,17 @@ class TestNumberToTextConverter {
 			int counter = 0;
 			while(enum1.hasMoreElements()) {
 				 counter+= 1;
-				 System.out.println(" counter no: " + counter);
 				String key = (String) enum1.nextElement();
 				String value = prop.getProperty(key);
-				System.out.println("Property key:" + key +"  and Property value::" + value);
-					
-			//fail("Not yet implemented"); // TODO
 				
 			String[] result = new String[1];
-			System.out.println("........1");
 			result[0]="";
 			int num = Integer.parseInt(key);
-			System.out.println(".........2");
 			String[] results = nttc.ConvertNumberToText(num, result);
-			System.out.println (num + "\t" + results[0]);
 			
-			System.out.println ("Converter value:" + results[0] +"  Test Value: " + value);
-			//assertEquals(results[0].toLowerCase(),value.toLowerCase());
-			//assertEquals(results[0].trim(),value.trim());
-			assertEquals("Good","Good");
+			//System.out.println ("Converter value:" + results[0] +"  Test Value: " + value);
+			assertEquals(results[0].trim(),value.trim());
+			
 					
 }
 		} catch (IOException e) {
